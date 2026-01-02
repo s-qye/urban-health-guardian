@@ -13,27 +13,30 @@ generator = ActionGenerator()
 
 def collect_data(state):
     """Node: Collect environmental data."""
-    print(f"[{state['run_id']}] Collecting data...")
+    print(f"[{state['run_id']}] 📥 Collecting data...")
     errors = list(state.get("errors", []))
-
+    weather_data = None
+    aqi_data = None
+    
     try:
         weather = weather_client.get_current_weather()
-        weather_data = weather.model_dump()
+        if weather:
+            weather_data = weather.model_dump()
     except Exception as e:
-        weather_data = None
         errors.append(f"Weather error: {e}")
     
     try:
         aqi = aqi_client.get_current_aqi()
-        aqi_data = aqi.model_dump()
+        if aqi:
+            aqi_data = aqi.model_dump()
     except Exception as e:
-        aqi_data = None
-        errors.append(f"Air Quality error: {e}")
+        errors.append(f"AQI error: {e}")
     
-    completeness = sum([weather_data is not None, aqi is not None]) / 2.0
-
+    sources_available = sum([weather_data is not None, aqi_data is not None])
+    completeness = sources_available / 2
+    
     return {
-        "phase": "collection_data",
+        "phase": "collecting_data",
         "weather_data": weather_data,
         "air_quality_data": aqi_data,
         "data_quality": {"completeness": completeness},
