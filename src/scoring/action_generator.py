@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class ActionPlan:
     summary: str
     actions: list[dict]
-    ourdoor_exercise_safe: bool
+    outdoor_exercise_safe: bool
     mask_recommended: bool
 
 class ActionGenerator:
