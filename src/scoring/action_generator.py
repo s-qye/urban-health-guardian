@@ -13,10 +13,10 @@ class ActionGenerator:
         outdoor_safe = True
         mask_needed = False
 
-        if assessment.overall_Score >= 70:
+        if assessment.overall_score >= 70:
             actions.append({"priority": "critical", "action": "Stay indoors if possible!"})
             outdoor_safe = False
-        elif assessment.overall_Score >= 50:
+        elif assessment.overall_score >= 50:
             actions.append({"priority": "high", "action": "Limit outdoor exposure."})
 
         for concern in assessment.primary_concerns:
