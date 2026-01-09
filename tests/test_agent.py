@@ -4,7 +4,6 @@ from src.scoring.risk_calculator import RiskCalculator, RiskLevel
 
 def test_risk_calculator_low():
     calc = RiskCalculator()
-    # Mock low-risk conditions
     result = calc.calculate(None, None)
     assert result.overall_score == 0
 

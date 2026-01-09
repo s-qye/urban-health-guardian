@@ -1,4 +1,3 @@
-# src/agents/graph.py
 from langgraph.graph import StateGraph, END
 from src.agents.state import UrbanHealthState, create_initial_state
 from src.agents.nodes import (
@@ -22,7 +21,6 @@ def build_health_guardian_graph():
     """
     graph = StateGraph(UrbanHealthState)
     
-    # Add nodes
     graph.add_node("collect_data", collect_data)
     graph.add_node("analyze_risk", analyze_risk)
     graph.add_node("check_trends", check_trends)
@@ -30,11 +28,9 @@ def build_health_guardian_graph():
     graph.add_node("generate_actions", generate_actions)
     graph.add_node("draft_briefing", draft_briefing)
     
-    # Add edges
     graph.set_entry_point("collect_data")
     graph.add_edge("collect_data", "analyze_risk")
     
-    # Conditional: check trends only if needed
     graph.add_conditional_edges(
         "analyze_risk",
         should_check_trends,
@@ -48,7 +44,6 @@ def build_health_guardian_graph():
     
     return graph.compile()
 
-# Create agent instance
 health_guardian_agent = build_health_guardian_graph()
 
 def run_health_guardian() -> dict:

@@ -16,26 +16,21 @@ class UrbanHealthState(TypedDict):
     timestamp: datetime
     phase: AgentPhase
 
-    # data
     weather_data: Optional[dict]
     air_quality_data: Optional[dict]
     data_quality: dict
 
-    # analysis
     risk_score: float
     risk_level: str
     confidence: str
 
-    # trend analysis
     trend_check_needed: bool
     trend_alert: bool
 
-    # output
     action_plan: Optional[dict]
     briefing_text: str
     briefing_type: str
 
-    # errors
     errors: list[str]
     messages: Annotated[list, add_messages]
 

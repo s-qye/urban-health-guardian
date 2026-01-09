@@ -38,11 +38,9 @@ class AirQualityClient:
             response.raise_for_status()
             data = response.json()
             
-            # Check if we got any data
             if not data:
                 return None
             
-            # Find highest AQI reading
             primary = max(data, key=lambda x: x.get("AQI", 0))
             
             return AirQualityData(

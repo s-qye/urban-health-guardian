@@ -138,7 +138,6 @@ Include 2-3 recommendations. Under 100 words."""
         "briefing_text": response.content,
     }
 
-# Routing function
 def should_check_trends(state):
     if state.get("trend_check_needed", False):
         return "check_trends"

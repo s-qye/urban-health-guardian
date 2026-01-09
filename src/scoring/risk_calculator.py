@@ -1,4 +1,3 @@
-# src/scoring/risk_calculator.py
 from dataclasses import dataclass
 from enum import Enum
 from typing import Optional
@@ -29,7 +28,6 @@ class RiskCalculator:
         scores = []
         concerns = []
         
-        # Air Quality Score
         if air_quality is not None:
             aqi = air_quality.primary_aqi
             if aqi <= 50:
@@ -45,7 +43,6 @@ class RiskCalculator:
                 concerns.append(f"AQI unhealthy ({aqi})")
             scores.append(("air_quality", min(aqi_score, 100)))
         
-        # Temperature Score
         if weather is not None:
             temp = weather.feels_like_f
             
@@ -67,7 +64,6 @@ class RiskCalculator:
                 temp_score = abs(temp - 70) * 2
             scores.append(("temperature", min(temp_score, 100)))
             
-            # Wind score
             wind = weather.wind_speed_mph
             if wind > 30:
                 wind_score = 60
@@ -78,7 +74,6 @@ class RiskCalculator:
                 wind_score = wind
             scores.append(("wind", min(wind_score, 100)))
             
-            # Visibility score
             visibility = weather.visibility_miles
             if visibility < 1:
                 vis_score = 70
@@ -89,17 +84,14 @@ class RiskCalculator:
                 vis_score = 0
             scores.append(("visibility", vis_score))
         
-        # Calculate overall score
         if scores:
             total_weight = sum(self.WEIGHTS.get(s[0], 0.1) for s in scores)
             overall = sum(s[1] * self.WEIGHTS.get(s[0], 0.1) for s in scores) / total_weight
         else:
             overall = 0
         
-        # Determine risk level
         level = self._get_level(overall)
         
-        # Determine confidence
         confidence = "high" if len(scores) >= 3 else "medium" if len(scores) >= 1 else "low"
         
         return RiskAssessment(
