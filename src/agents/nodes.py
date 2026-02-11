@@ -13,7 +13,7 @@ generator = ActionGenerator()
 
 def collect_data(state):
     """Node: Collect environmental data."""
-    print(f"[{state['run_id']}] 📥 Collecting data...")
+    print(f"[{state['run_id']}] Collecting data...")
     errors = list(state.get("errors", []))
     weather_data = None
     aqi_data = None
@@ -128,7 +128,7 @@ Weather: {weather_summary}
 Air Quality: {aqi_summary}
 Risk Score: {state.get('risk_score', 0):.0f}/100 ({state.get('risk_level')})
 
-{"⚠️ HIGH RISK - Be urgent" if state.get('risk_score', 0) >= 70 else "Keep it brief and friendly."}
+{"HIGH RISK: Be urgent" if state.get('risk_score', 0) >= 70 else "Keep it brief and friendly."}
 Include 2-3 recommendations. Under 100 words."""
 
     response = llm.invoke([HumanMessage(content=prompt)])

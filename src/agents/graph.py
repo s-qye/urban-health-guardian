@@ -50,14 +50,14 @@ def run_health_guardian() -> dict:
     """Run the agent and return final state."""
     initial_state = create_initial_state()
     print(f"\n{'='*50}")
-    print(f"🏃 Running Urban Health Guardian")
+    print(f"Running Urban Health Guardian")
     print(f"   Run ID: {initial_state['run_id']}")
     print(f"{'='*50}\n")
     
     final_state = health_guardian_agent.invoke(initial_state)
     
     print(f"\n{'='*50}")
-    print(f"✅ Complete!")
+    print(f"Complete!")
     print(f"{'='*50}\n")
     
     return final_state

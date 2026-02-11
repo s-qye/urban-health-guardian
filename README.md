@@ -19,7 +19,7 @@ Urban Health Guardian is an intelligent agent that automatically:
 ## Architecture
 [Weather API] & [AirNow API] → [Data Ingestion] → [Risk Scoring] → [Action Generation] → [LangGraph Agent] → [LLM Briefing] → [Streamlit UI]
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.11+
@@ -41,17 +41,17 @@ streamlit run app.py      # Web UI
 python -m src.main --save # CLI
 ```
 
-## 📊 Sample Outputs
+## Sample Outputs
 
 ### 🟢 Low Risk
 Good morning! Excellent conditions for outdoor activities.
-🌡️ 72°F, clear skies | 💨 AQI 35 (Good)
-✅ Perfect for exercise | ✅ No mask needed
+72°F, clear skies | AQI 35 (Good)
+Perfect for exercise | No mask needed
 
 ### 🔴 High Risk
 ⚠️ ALERT: Multiple hazards detected.
-🌡️ 98°F (feels 108°F) | 💨 AQI 165 (Unhealthy)
-🚨 Stay indoors 11am-3pm | 😷 Wear N95 outdoors
+98°F (feels 108°F) | AQI 165 (Unhealthy)
+Stay indoors 11am-3pm | Wear N95 outdoors
 
 ## Testing
 ```bash
