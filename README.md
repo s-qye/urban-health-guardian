@@ -1,6 +1,6 @@
 <!-- README.md -->
 
-# 🏥 Urban Health Guardian
+# Urban Health Guardian
 
 > An autonomous environmental risk scoring + action agent for Boston commuters.
 
